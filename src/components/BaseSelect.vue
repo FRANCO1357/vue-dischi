@@ -1,21 +1,18 @@
 <template>
     <select v-on:change="myChange" v-model="genreSelected" name="" id="">
-            <option v-for="genre in genres" :key="genre.value" :value="genre.value">{{genre.value}}</option>
-        </select>
+        <option v-for="genre in genreArray" :key="genre" :value="genre">{{genre}}</option>
+    </select>
 </template>
 
 <script>
 export default{
     name: 'BaseSelect',
+    props: {
+        genreArray: Array,
+    },
     data(){
         return{
             genreSelected: '',
-            genres: [
-                {value: 'Rock'},
-                {value: 'Pop'},
-                {value: 'Jazz'},
-                {value: 'Metal'},
-            ],
         }
     },
     methods:{

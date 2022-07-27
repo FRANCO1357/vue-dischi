@@ -30,7 +30,8 @@ export default{
             this.songs = res.data.response;
             this.songs.forEach((song) =>{
                 if(!this.genres.includes(song.genre)) this.genres.push(song.genre)
-            })
+            });
+            this.$emit('genre-array', this.genres);
         });
     },
     components: { 

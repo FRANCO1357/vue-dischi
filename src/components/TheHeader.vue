@@ -1,7 +1,7 @@
 <template>
     <header>
         <img src="../assets/spotify_logo.png" alt="">
-        <BaseSelect @genre-clicked="getValue"/>
+        <BaseSelect @genre-clicked="getValue" :genre-array="genreArray"/>
     </header>
 </template>
 
@@ -10,6 +10,9 @@ import BaseSelect from './BaseSelect.vue';
 export default {
     name: "TheHeader",
     components: { BaseSelect },
+    props:{
+        genreArray: Array,
+    },
     data(){
         return{
         

@@ -1,7 +1,7 @@
 <template>
   <div>
-    <TheHeader @genre-clicked="getValue"/>
-    <TheMain :genre-selected="genreSelected"/>
+    <TheHeader @genre-clicked="getValue" :genre-array="genreArray"/>
+    <TheMain :genre-selected="genreSelected" @genre-array="getGenreArray"/>
   </div>
 </template>
 
@@ -14,6 +14,7 @@ export default {
   data(){
     return{
       genreSelected: '',
+      genreArray: [],
     }
   },
   components: {
@@ -22,8 +23,11 @@ export default {
   },
   methods:{
         getValue(value){
-            console.log(2, value)
-            this.genreSelected = value
+          console.log(2, value)
+          this.genreSelected = value
+        },
+        getGenreArray(array){
+          this.genreArray= array
         }
     }
 }
