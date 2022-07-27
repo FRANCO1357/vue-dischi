@@ -1,7 +1,7 @@
 <template>
     <main>
         <div class="container">
-            <div class="card" v-for="song in songs" :key="song.title">
+            <div class="card" v-for="song in filteredSongs" :key="song.title">
                 <TheSongCard :poster="song.poster" :title="song.title" :author="song.author" :year="song.year"/>
             </div>
         </div>
@@ -13,18 +13,36 @@ import axios from 'axios'
 import TheSongCard from './TheSongCard.vue';
 export default{
     name: "TheMain",
+    props: {
+        genreSelected: {
+            type: String,
+            default: '',
+        }
+    },
     data() {
         return {
-            songs: []
+            songs: [],
+            genres: [],
         };
     },
     mounted() {
         axios.get("https://flynn.boolean.careers/exercises/api/array/music").then((res) => {
             this.songs = res.data.response;
+            this.songs.forEach((song) =>{
+                if(!this.genres.includes(song.genre)) this.genres.push(song.genre)
+            })
         });
     },
     components: { 
         TheSongCard 
+    },
+
+    computed: {
+        filteredSongs(){
+            return this.songs.filter((song) => {
+                return song.genre.includes(this.genreSelected)         
+            })
+        }
     }
 }
 </script>

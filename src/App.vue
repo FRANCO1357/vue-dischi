@@ -1,7 +1,7 @@
 <template>
   <div>
-    <TheHeader/>
-    <TheMain/>
+    <TheHeader @genre-clicked="getValue"/>
+    <TheMain :genre-selected="genreSelected"/>
   </div>
 </template>
 
@@ -11,10 +11,21 @@ import TheMain from './components/TheMain.vue'
 
 export default {
   name: 'App',
+  data(){
+    return{
+      genreSelected: '',
+    }
+  },
   components: {
     TheHeader,
     TheMain,
-}
+  },
+  methods:{
+        getValue(value){
+            console.log(2, value)
+            this.genreSelected = value
+        }
+    }
 }
 </script>
 
