@@ -1,5 +1,6 @@
 <template>
     <select v-on:change="myChange" v-model="genreSelected" name="" id="">
+        <option value="">Tutti i generi</option>
         <option v-for="genre in genreArray" :key="genre" :value="genre">{{genre}}</option>
     </select>
 </template>
